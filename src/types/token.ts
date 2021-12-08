@@ -17,6 +17,9 @@ export interface TokenData {
     [key in Currencies]: number
   }
 }
+export type TokenDataUnique = {
+  [key in Currencies]?: number
+}
 
 export const ListCurrenciesArray = Object.keys(ListCurrencies) as Currencies[]
 

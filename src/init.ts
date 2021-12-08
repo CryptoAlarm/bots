@@ -1,11 +1,8 @@
 import Client from "./discord/Client";
 import { getBotsList } from "./providers/getBotsList";
-import { IBots, BotsModel } from "./types/bots";
+import { IBotsReduced, IBots, BotsModel } from "./types/bots";
+
 import {Bots} from "./discord/Bots"
-
-
-
-let instance: Bots[] = []
 
 function BotsMapCallback(instanceReference: Partial<BotsModel>) {
 
@@ -19,26 +16,42 @@ function BotsMapCallback(instanceReference: Partial<BotsModel>) {
       instanceReference     
     })
   } as IBots
-
 }
 
 ;(async () => {
   try {
     const botsModel = await getBotsList();
 
-    const BotsList = botsModel.map(BotsMapCallback);
+    const __Bots = botsModel.map(BotsMapCallback);
 
-    for (const bot of BotsList) {
+   /* const Bots = BotsMap.reduce((previous, currentObject) => {
+
+      for (const key of Object.keys(currentObject)) {
+        previous[key] = previous[key] || []        
+        previous[key].push(currentObject[key])
+      }
+
+      return previous
+
+    }, {} as IBotsReduced)*/
+
+    let instance:Bots[] = []
+
+    for (const bot of __Bots) {
       try {
         instance.unshift(new Bots(bot))        
 
         await instance[0].Login()
-
         bot.client.once("ready", instance[0].setIntervals)        
         bot.client.on("messageCreate", instance[0].onMessage)
 
-      } catch (error) { }     
+      } catch (error) {
+        console.log(error)
+      }     
     }
+
+   
+   
     
     
   } catch (error) { }

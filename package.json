@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "dotenv": "^10.0.0",    
-    "discord.js": "^12.5.1"    
+    "discord.js-light": "^4.3.1",
+    "dotenv": "^10.0.0"
   },
   "scripts": {
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/app.ts"
+    "dev": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/init.ts"
   }
 }
