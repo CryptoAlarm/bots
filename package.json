@@ -16,6 +16,6 @@
     "dotenv": "^10.0.0"
   },
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/init.ts"
+    "dev": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/app.ts"
   }
 }

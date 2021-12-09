@@ -4,7 +4,6 @@ import { IBots, BotsModel } from "./types/bots";
 import {Bots} from "./discord/Bots"
 
 
-
 let instance: Bots[] = []
 
 function BotsMapCallback(instanceReference: Partial<BotsModel>) {

@@ -1,4 +1,4 @@
-import {setActivity} from "./setActivity"
+import {setActivity} from "../methods/setActivity"
 import {Prices} from "./Prices"
 import {Login} from "./Login"
 
