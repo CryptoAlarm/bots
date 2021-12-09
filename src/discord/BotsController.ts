@@ -11,7 +11,7 @@ export class Bots{
   private config?: IBotsConfig  = {}
   private turnIntoSubcurrencyAndPercent: boolean = false
 
-  constructor(private instanceReference: IBots, config?: IBotsConfig) {
+  constructor(public instanceReference: IBots, config?: IBotsConfig) {
 
     this.config = {
       setActivityIntervalInSeconds: 1000 * (config?.setActivityIntervalInSeconds || 15)
@@ -34,10 +34,12 @@ export class Bots{
       tokenPriceHistory,
       turnIntoSubcurrencyAndPercent: this.turnIntoSubcurrencyAndPercent
     })
-
   }
   
   setIntervals = () => {
+
+    console.log(`${this.instanceReference.name} is online!`)
+
     setTimeout(this.setActivity, 0)
     setInterval(this.setActivity, this.config.setActivityIntervalInSeconds)
   }

@@ -1,12 +1,16 @@
 import "dotenv/config"
 import {BotsData} from "../test.data"
 
+let data:any = BotsData
 
 export const getBotsList = async () => {
+  try {
+    //  const { data } = await serverAPI.get<IBots[]>(endpoint)
+    
 
-//  const { data } = await serverAPI.get<IBots[]>(endpoint)
-  
-  const data = BotsData
+    let data = BotsData
 
-  return data
+    return data
+
+  } catch (error) { return [] }   
 }

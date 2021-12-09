@@ -1,12 +1,13 @@
 import {BotsModel} from "./types/bots"
 
-export const BotsData = [
+export let BotsData =  [
   {
     ref: "binancecoin",
     discordApiKey: "OTE3ODU5MTgxNTk4NDk0NzQw.Ya-0-Q.V9A-AU0nSSDfqv8xM5_K8jOxOVo",
     name: "BNB",
     currency: "usd",
     subCurrency: "brl",
+    discordId: "1"
   },
   {
     ref: "wemix-token",
@@ -14,6 +15,7 @@ export const BotsData = [
     name: "WEMIX",
     currency: "usd",
     subCurrency: "usd",
+    discordId: "2"
   },
 
-] as Partial<BotsModel[]>
+]  as Partial<BotsModel[]>

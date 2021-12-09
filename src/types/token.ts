@@ -11,7 +11,6 @@ export const ListCurrencies = {
 }
 
 export type Currencies = keyof typeof ListCurrencies
-
 export interface TokenData {
   [key: string]: {
     [key in Currencies]: number
@@ -29,7 +28,6 @@ export type Providers =
   | "factorychain"
   | "pancakeswap"
   | "coingecko";
-
 export interface Tokens {
   ref: string;
   contract: string;
@@ -40,3 +38,35 @@ export type TokensReduced = {
   [key in Providers]: Partial<Tokens>[];
 };
 
+export const currenciesMap = [
+  {
+    currency: "usd",
+    emoji: "🇺🇲",
+    prefix: "$",
+  },
+  {
+    currency: "brl",
+    emoji: "🇧🇷",
+    prefix: "R",
+  },
+  {
+    currency: "php",
+    emoji: "🇵🇭",
+    prefix: "₱",
+  },
+  {
+    currency: "eur",
+    emoji: "💶",
+    prefix: "€"
+  },
+  {
+    currency: "gbp",
+    emoji: ":flag_gb:",
+    prefix: "£"
+  },
+  {
+    currency: "btc",
+    emoji: ":coin:",
+    prefix: "₿"
+  }
+]
