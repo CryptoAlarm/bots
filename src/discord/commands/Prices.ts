@@ -1,126 +1,111 @@
-import { Message, MessageEmbed } from "discord.js-light"
-import { IBots } from "../../types/bots"
-import { TokenDataUnique } from "../../types/token"
+import { Message, MessageEmbed } from "discord.js-light";
+import { IBots } from "../../types/bots";
+import { currenciesMap, TokenDataUnique } from "../../types/token";
+import { ReplyEmbeded } from "../methods/ReplyEmbeded";
 
 interface Props {
-    message: Message
-    TokenDataUnique: TokenDataUnique
-    instanceReference: IBots
+  message: Message;
+  TokenDataUnique: TokenDataUnique;
+  instanceReference: IBots;
 }
-export const Prices = ({ message, TokenDataUnique, instanceReference }: Props) => {
-    const splited = message.content.split(" ")
 
-    if (splited[1]) {
-        let value: number
+const MAX_NUMBER = 9999999999999;
 
-        try {
-            value = parseFloat(splited[1].replace(",", "."))
-        } catch (e) {
-            value = 1
-        }
+const fix = (n: number) => {
+  if (n > 10) return n.toFixed(2);
+  else if (n > 1) return n.toFixed(4);
+  else if (n > 0.1) return n.toFixed(6);
+  else return n.toFixed(8);
+};
 
-        if (value > 9999999999999) {
-            return
-        }
+const execute = (
+  message: Message,
+  name: string,
+  value: number,
+  embedMessage: string,
+  embedMessageLeft?: string,
+  embedMessageRight?: string
+) => {
 
-        const prices = {}
-        const pricesOut = {}
+  return ReplyEmbeded(message, {
+    description: `
+			${embedMessageRight?.length ? `
+				**${value} x ${name}**
+				${embedMessageRight}\n` : ""}			
+			**1x ${name}**
+      ${embedMessage}\n    
+			${embedMessageLeft?.length ? `
+				**Worth of calculator**
+				${embedMessageLeft}\n` : ""}  
+			
+			${! embedMessageLeft?.length ? "**Try:**\n!" + name.toLowerCase() + " 25" : ""}
+    `,
+  });
+};
 
-        Object.keys(TokenDataUnique)
-            .map(key => {
-                prices[key] = (value * (TokenDataUnique?.[key] || 0))
-            })
+export const Prices = ({
+  message,
+  TokenDataUnique,
+  instanceReference,
+}: Props) => {
+  const params = message.content.split(" ")?.[1];
 
-        Object.keys(TokenDataUnique)
-            .map(key => {
-                pricesOut[key] = (value / (TokenDataUnique?.[key] || 0))
-            })
+  let value: number;
 
-        const fix = (n: number) => {
-            return n > 10
-                ? n.toFixed(2)
-                : n > 1
-                    ? n.toFixed(4)
-                    : n > 0.1
-                        ? n.toFixed(6)
-                        : n.toFixed(8)
-        }
+  const prices = {};
+  const pricesRight = {};
+  const pricesLeft = {};
 
-        const currencyMap = [
-            {
-                currency: "usd",
-                emoji: "🇺🇲",
-                prefix: "$"
-            },
-            {
-                currency: "brl",
-                emoji: "🇧🇷",
-                prefix: "R"
-            },
-
-            {
-                currency: "php",
-                emoji: "🇵🇭",
-                prefix: "₱"
-            },/*
-            {
-                currency: "eur",
-                emoji: "💶",
-                prefix: "€"
-            },
-            {
-                currency: "gbp",
-                emoji: ":flag_gb:",
-                prefix: "£"
-            },
-            {
-                currency: "btc",
-                emoji: ":coin:",
-                prefix: "₿"
-            }*/
-        ]
-
-
-        let embedMessageIn = currencyMap.map(value => {
-            return `${value.emoji} ${value.prefix} ${fix(pricesOut?.[value.currency] || 0)}`
-        }).join("\n")
-
-        let embedMessageOut = currencyMap.map(value => {
-            return `${value.emoji} ${value.prefix} ${fix(prices?.[value.currency] || 0)}`
-        }).join("\n")
-
-
-        let dolar = "0";
-        if (!TokenDataUnique?.usd) {
-            dolar = "0"
-        }
-        else {
-            dolar = TokenDataUnique?.usd > 10
-                ? TokenDataUnique?.usd?.toFixed(2)
-                : TokenDataUnique?.usd > 1
-                    ? TokenDataUnique?.usd?.toFixed(4)
-                    : TokenDataUnique?.usd > 0.1
-                        ? TokenDataUnique?.usd?.toFixed(6)
-                        : TokenDataUnique?.usd?.toFixed(8)
-        }
-
-        Promise.resolve(
-            message.reply({
-                embeds: [
-                    new MessageEmbed()
-                        .setAuthor("Click here to add our bots to your server", "https://cryptoalarm.xyz/logo.png", "https://cryptoalarm.xyz")
-                        .setDescription(`
-                            **1 x ${instanceReference.name.toUpperCase()}**
-                            ${embedMessageIn}\n
-                            **${value} x ${instanceReference.name.toUpperCase()}**
-                            ${embedMessageOut}\n
-                        `)
-                        .setColor("#00ff00")
-                        .setFooter("https://cryptoalarm.xyz  _______ _______ _________ ________ _________ ________ _________")
-                        .setTimestamp()
-                ]
-            })
-        )
-
+  try {
+    if (!params) {
+      throw new Error("Calculate only normal value");
     }
-}
+
+    value = parseFloat(params.replace(",", "."));
+
+    if (value > MAX_NUMBER) {
+      throw new Error("Cannot calculate number above " + MAX_NUMBER);
+    }
+  } catch (e) {
+    value = 1;
+  }
+
+  Object.keys(TokenDataUnique).map((key) => {
+    prices[key] = 1 * (TokenDataUnique?.[key] || 0);
+    pricesRight[key] = value * (TokenDataUnique?.[key] || 0);
+    pricesLeft[key] = value / (TokenDataUnique?.[key] || 0);
+  });
+
+  let embedMessage = currenciesMap
+    .map((token) => {
+      return `${token.emoji} ${token.prefix} ${fix(
+        prices?.[token.currency] || 0
+      )}`;
+    })
+    .join("\n");
+
+  if (value === 1) {
+    return execute(message, instanceReference.name, value, embedMessage);
+  }
+
+  return execute(
+    message,
+    instanceReference.name,
+    value,
+    embedMessage,
+    currenciesMap
+			.map((token) => {
+				return `${token.emoji} ${token.prefix} ${value} is worth of ${fix(
+					pricesLeft?.[token.currency] || 0
+				)} ${instanceReference.name}`;
+			})
+			.join("\n"),
+    currenciesMap
+			.map((token) => {
+				return `${token.emoji} ${token.prefix} ${fix(
+					pricesRight?.[token.currency] || 0
+				)}`;
+			})
+			.join("\n")
+  );
+};
