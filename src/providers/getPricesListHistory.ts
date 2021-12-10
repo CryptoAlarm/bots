@@ -1,18 +1,7 @@
-import axios from "axios"
+import API from "./api"
 import { TokenData, TokenDataUnique } from "../types/token"
 
 let data: TokenData = {}
-
-const factory = async () => {
-  try { 
-    const {data: response} = await axios.get<TokenData>("https://cryptoalarm.xyz/api/getPriceInfo") 
-    data = response
-  } 
-  catch (error) {} 
-}
-
-factory()
-setInterval(factory, 2000)
 
 export const getPricesListHistory = (ref: string): {tokenPriceHistory: TokenDataUnique, tokenPrice: TokenDataUnique} => {
   return {
@@ -20,3 +9,17 @@ export const getPricesListHistory = (ref: string): {tokenPriceHistory: TokenData
     tokenPriceHistory: data?.["_24hoursBefore"]?.[ref] || {},
   }
 }
+
+;(() => {
+
+  const factory = async () => {
+    try { 
+      const {data: response} = await API.get<TokenData>("/getPriceInfo") 
+      data = response
+    } 
+    catch (error) {} 
+  }
+
+  factory()
+  setInterval(factory, 2000) 
+})();
