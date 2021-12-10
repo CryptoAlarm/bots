@@ -1,9 +1,8 @@
 import axios from "axios"
-import {endpoint} from "../config/server" 
 import "dotenv/config"
 
 export default axios.create({
-  baseURL: endpoint,
+  baseURL: process.env.ENDPOINT_API,
   headers: {
     authorization: `Bearer ${process.env.AUTHORIZATION}`
   }
