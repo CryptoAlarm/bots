@@ -66,7 +66,8 @@ export const Prices = ({
     if (value > MAX_NUMBER) {
       throw new Error("Cannot calculate number above " + MAX_NUMBER);
     }
-  } catch (e) {
+  } 
+  catch (e) {
     value = 1;
   }
 
