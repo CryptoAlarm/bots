@@ -1,4 +1,5 @@
 import BotsApplication from "./app"
+import "dotenv/config"
 /**
  * 
 console.log("PID " + process.pid)
