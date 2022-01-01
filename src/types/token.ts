@@ -1,13 +1,11 @@
-/*const __Currencies = <const>['brl', 'usd', 'php', 'eur', 'gdp']
-const builder = __Currencies;
-export type Currencies = typeof builder[number];*/
+
 export const ListCurrencies = {
   brl: 0,
   usd: 0,
   php: 0,
   eur: 0,
   gbp: 0,
-  btc: 0
+  thb: 0
 }
 
 export type Currencies = keyof typeof ListCurrencies
@@ -65,8 +63,8 @@ export const currenciesMap = [
     prefix: "£"
   },
   {
-    currency: "btc",
-    emoji: ":coin:",
-    prefix: "₿"
+    currency: "thb",
+    emoji: ":flag_th:",
+    prefix: "T"
   }
 ]

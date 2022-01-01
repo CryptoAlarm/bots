@@ -3,7 +3,7 @@ import { Message, MessageEmbedOptions } from "discord.js-light";
 
 export const ReplyEmbeded = (message: Message, MyMessageEmbedOptions: MessageEmbedOptions): Promise<Message> => {
  
-  let DefaultEmbedOption = {
+  let DefaultEmbedOptions = {
     author: {
       name: "Click here to add our bots to your server",
       iconURL: "https://cryptoalarm.xyz/logo.png",
@@ -12,7 +12,7 @@ export const ReplyEmbeded = (message: Message, MyMessageEmbedOptions: MessageEmb
     timestamp: new Date(),
     color: "#00ff00",
     footer: {
-      text: "https://cryptoalarm.xyz  _______ _______ _________ ________ _________ ________ _________",
+      text: "Powered by https://cryptoalarm.xyz. Access and add our bots for free!",
       iconURL: "https://cryptoalarm.xyz/logo.png",
     }
 
@@ -23,7 +23,7 @@ export const ReplyEmbeded = (message: Message, MyMessageEmbedOptions: MessageEmb
     message.reply({
       embeds: [
         {
-          ...DefaultEmbedOption,
+          ...DefaultEmbedOptions,
           ...MyMessageEmbedOptions
         }
       ],

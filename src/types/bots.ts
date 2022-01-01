@@ -22,8 +22,7 @@ export interface BotsModel {
   currency: Currencies
   subCurrency: Currencies;
   discordApiKey: string;
-  discordId: string
-  
+  discordId: string  
 }
 
 export interface IBots extends BotsModel {

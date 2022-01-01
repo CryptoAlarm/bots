@@ -1,6 +1,4 @@
 import BotsApplication from "./app"
-var util = require('util');
-
 /**
  * 
 console.log("PID " + process.pid)

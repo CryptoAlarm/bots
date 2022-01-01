@@ -1,4 +1,4 @@
-import { Message, MessageEmbed } from "discord.js-light";
+import { Message } from "discord.js-light";
 import { IBots } from "../../types/bots";
 import { currenciesMap, TokenDataUnique } from "../../types/token";
 import { ReplyEmbeded } from "../methods/ReplyEmbeded";
@@ -33,7 +33,7 @@ const execute = (
 				**${value} x ${name}**
 				${embedMessageRight}\n` : ""}			
 			**1x ${name}**
-      ${embedMessage}\n    
+      ${embedMessage}
 			${embedMessageLeft?.length ? `
 				**Worth of calculator**
 				${embedMessageLeft}\n` : ""}  

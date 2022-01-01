@@ -1,5 +1,3 @@
 import onMessage  from "./onMessage"
 
-export {
-  onMessage,
-}
+export { onMessage }

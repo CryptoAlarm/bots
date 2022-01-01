@@ -123,7 +123,6 @@ export const setActivity = (setActivityProps: setActivityProps) => {
 
       if (!name) return false
     }
-
     instanceReference.client.user?.setActivity({
       type: "PLAYING",
       name: name,

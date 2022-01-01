@@ -5,7 +5,6 @@ import { ClientProps } from "../types/discord";
 import { LightCache } from "./CacheControl";
 import { InstancesIdWhoShouldUseShards, ShardsOptions } from "./ShardsOptions";
 
-
 export default class extends Client {
 
   readonly instanceReference: Partial<BotsModel>
@@ -20,5 +19,3 @@ export default class extends Client {
   }
 
 }
-
-
