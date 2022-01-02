@@ -34,8 +34,20 @@ setInterval(() => {
 
  */
 process.on("uncaughtException", (error, origin) => {
-  console.log(error)  
-  console.log(origin)  
+
+  console.log("Catch supremo")
+  
+  try {
+    console.error({
+      name: error.name?.substr(0, 150),
+      message: error.message?.substr(0, 150),
+      stack: error.stack?.substr(0,150)
+    })
+    
+  } 
+  catch (error) {
+    
+  }
 })
 
 

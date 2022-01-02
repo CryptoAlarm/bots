@@ -49,6 +49,6 @@ async function BotsBuildObjectAndCheckForChanges () {
 export default async () => {
   try {
     setTimeout(BotsBuildObjectAndCheckForChanges, 0);
-    setInterval(BotsBuildObjectAndCheckForChanges, 1000 * 20)
+    setInterval(BotsBuildObjectAndCheckForChanges, 1000 * 60)
   } catch (error) {}
 }

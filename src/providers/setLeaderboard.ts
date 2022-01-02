@@ -23,6 +23,7 @@ export const clean = async () => {
 
 export const post = async () => {
   try {
+    console.log(`trying to push ${queue?.length} bots to leaderboard.`)
     const {data} = await API.post<{ok: boolean}>("/private/guilds", queue)    
     if (data.ok === true) { clean() }
   } 
