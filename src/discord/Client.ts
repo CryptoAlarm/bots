@@ -1,7 +1,6 @@
 import { Client } from "discord.js-light";
 import { BotsModel } from "../types/bots";
 import { ClientProps } from "../types/discord";
-
 import { LightCache } from "./CacheControl";
 import { InstancesIdWhoShouldUseShards, ShardsOptions } from "./ShardsOptions";
 

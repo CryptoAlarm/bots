@@ -1,1 +1,1 @@
-export const endpoint = "http://localhost:3010/v2/api"
+export const endpoint = "http://cryptoalarm.xyz/v2/api"

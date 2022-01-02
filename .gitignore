@@ -5,7 +5,7 @@ node_modules/
 # PRODUCTION MODE
 
 .env
-
+dist/
 # DEBUG STATION IGNORE FILES 
 
 src/test.data.ts

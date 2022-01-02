@@ -1,6 +1,6 @@
 import API from "./api"
 
-interface Leaderboard {
+export interface Leaderboard {
   id: string 
   token: string 
   guildId: string 
@@ -30,7 +30,7 @@ export const post = async () => {
 }
 
 export const push = (guilds: Leaderboard[]) => {
-  console.log(queue)
+  
   queue.push(
     ...guilds.filter(guild => {      
       for (let __guild of queue) {

@@ -5,19 +5,6 @@ let data: TokenData = {}
 
 export const getPricesListHistory = (ref: string): {tokenPriceHistory: TokenDataUnique, tokenPrice: TokenDataUnique} => {
   
-  if (process.env.ENVIROMENT_DEV) {
-    return {
-      "tokenPrice": {
-        usd: 20,
-        brl: 100
-      },
-      tokenPriceHistory: {
-        usd: 10,
-        brl: 50
-      }
-    }
-  }
-  
   return {
     tokenPrice: data?.[ref] || {},
     tokenPriceHistory: data?.["_24hoursBefore"]?.[ref] || {},
@@ -26,11 +13,6 @@ export const getPricesListHistory = (ref: string): {tokenPriceHistory: TokenData
 
 ;(() => {
 
- 
-  if (process.env.ENVIROMENT_DEV) {
-    return false
-  }
-  
   const factory = async () => {
     try { 
       const {data: response} = await API.get<TokenData>("/mergePrices") 
