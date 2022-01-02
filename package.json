@@ -16,7 +16,7 @@
     "dotenv": "^10.0.0"
   },
   "scripts": {
-    "dev": "ts-node-dev --exit-child --transpile-only --respawn --ignore-watch node_modules src/index.ts",
+    "dev": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/index.ts",
     "build": "rm -rf ./dist && tsc --build",    
     "start": "node ./dist/index.js"
   }
