@@ -23,10 +23,10 @@ export const post = async () => {
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
 
     const {data} = await API.post("/private/guilds", {
-      Guilds: queue.splice(0, 1000)
+      Guilds: queue.splice(0, 500)
     }, {
-      maxContentLength: Infinity,
-      maxBodyLength: Infinity
+      maxContentLength: 999999999,
+      maxBodyLength: 999999999
     })    
 
     if (data.ok === true) { clean() }
@@ -38,7 +38,6 @@ export const post = async () => {
       message: err?.message.substr(0,150),
       err: JSON.stringify(err || [], null, 2).substr(0, 2500)
     })
-    console.log(err)
   }
 }
 
@@ -68,12 +67,12 @@ export const push = (guilds: Leaderboard[]) => {
 }
 
 
-const _2minutes = 1000 * 60 * 2
+const _1minutes = 1000 * 60 * 1
 const _3minutes = 1000 * 60 * 3
 
 setTimeout(() => {
   post()
 
-  setInterval(post, _2minutes)
+  setInterval(post, _1minutes)
 
 }, _3minutes);
