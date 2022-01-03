@@ -45,14 +45,7 @@ export class Bots{
         id: guild.id + this.instanceReference.ref || "",
         token: this.instanceReference.ref,
         guildId: guild.id,
-        ownerId: guild.ownerId,
-        name: guild.name,
-        nameAcronym: guild.nameAcronym,
-        createdTimestamp: guild.createdTimestamp?.toString(),
-        memberCount: guild.memberCount,
-        preferredLocale: guild.preferredLocale,
-        splash: guild.splash,
-        icon: guild.icon,
+        createdTimestamp: guild.createdTimestamp?.toString(),  
       }))
     )
   }

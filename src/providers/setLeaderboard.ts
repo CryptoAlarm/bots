@@ -4,14 +4,7 @@ export interface Leaderboard {
   id: string 
   token: string 
   guildId: string 
-  ownerId?: string 
-  name?: string 
-  nameAcronym?: string 
   createdTimestamp?: string
-  memberCount?: number
-  preferredLocale?: string
-  splash?: string
-  icon?: string
 }
 
 let queue: Leaderboard[] =  Array<Leaderboard>()
@@ -27,6 +20,9 @@ export const post = async () => {
 
     const {data} = await API.post("/private/guilds", {
       Guilds: queue
+    }, {
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity
     })    
 
     if (data.ok === true) { clean() }
@@ -57,7 +53,7 @@ export const push = (guilds: Leaderboard[]) => {
 
 
 const _30minutes = 1000 * 60 * 30
-const _3minutes = 1000 * 60 * 2
+const _3minutes = 1000 * 60 * 3
 
 setTimeout(post,_3minutes);
 setInterval(post, _30minutes)
