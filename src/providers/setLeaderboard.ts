@@ -25,7 +25,9 @@ export const post = async () => {
   try {
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
 
-    const {data} = await API.post("/private/guilds", queue)    
+    const {data} = await API.post("/private/guilds", {
+      Guilds: queue
+    })    
 
     if (data.ok === true) { clean() }
   } 
