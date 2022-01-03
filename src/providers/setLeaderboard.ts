@@ -8,7 +8,7 @@ export interface Leaderboard {
 }
 
 let queue: Leaderboard[] =  Array<Leaderboard>()
-
+let queueHistory: Leaderboard[] =  Array<Leaderboard>()
 
 export const clean = async () => {
   queue = Array<Leaderboard>()
@@ -16,10 +16,14 @@ export const clean = async () => {
 
 export const post = async () => {
   try {
+
+    if (queue.length < 1) {
+      return
+    }
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
 
     const {data} = await API.post("/private/guilds", {
-      Guilds: queue
+      Guilds: queue.splice(0, 1000)
     }, {
       maxContentLength: Infinity,
       maxBodyLength: Infinity
@@ -35,25 +39,41 @@ export const post = async () => {
       err: JSON.stringify(err || [], null, 2).substr(0, 2500)
     })
     console.log(err)
-  } 
+  }
 }
 
 export const push = (guilds: Leaderboard[]) => {
   
+
   queue.push(
     ...guilds.filter(guild => {      
-      for (let __guild of queue) {
+      for (let __guild of queueHistory) {
         if (__guild.id === guild.id)
           return false
       }
       return true
     })
   )
+
+  queueHistory.push(
+    ...guilds.filter(guild => {      
+      for (let __guild of queueHistory) {
+        if (__guild.id === guild.id)
+          return false
+      }
+      return true
+    })
+  )
+
 }
 
 
-const _30minutes = 1000 * 60 * 30
+const _2minutes = 1000 * 60 * 2
 const _3minutes = 1000 * 60 * 3
 
-setTimeout(post,_3minutes);
-setInterval(post, _30minutes)
+setTimeout(() => {
+  post()
+
+  setInterval(post, _2minutes)
+
+}, _3minutes);
