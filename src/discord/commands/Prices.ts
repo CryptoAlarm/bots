@@ -68,8 +68,8 @@ export const Prices = ({
       throw new Error("Cannot calculate number above " + MAX_NUMBER);
     }
   } 
-  catch (e) {
-    value = 1;
+  catch (e) { 
+    value = 1; 
   }
 
   Object.keys(TokenDataUnique).map((key) => {

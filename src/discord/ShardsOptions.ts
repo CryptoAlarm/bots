@@ -9,7 +9,8 @@ export const InstancesIdWhoShouldUseShards = [
   "892458806859157594",
   "891370206314758145",
   "882143994069549056",
-  "890703669899689984"
+  "890703669899689984",
+  "884722115041984522"
 
 ]
 export const ShardsOptions: {shards: "auto" | number[] | number} = { shards: "auto" }
