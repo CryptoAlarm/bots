@@ -26,13 +26,14 @@ export const post = async () => {
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
 
     const {data} = await API.post("/private/guilds", queue)    
+
     if (data.ok === true) { clean() }
   } 
   catch (err) { 
     console.log(`Failed to push bots to leaderboard`)
     console.log({
       message: err?.message.substr(0,150),
-      err: JSON.stringify(err || [], null, 2).substr(0, 500)
+      err: JSON.stringify(err || [], null, 2).substr(0, 2500)
     })
   } 
 }
@@ -52,7 +53,7 @@ export const push = (guilds: Leaderboard[]) => {
 
 
 const _30minutes = 1000 * 60 * 30
-const _5minutes = 1000 * 60 * 5
+const _3minutes = 1000 * 60 * 3
 
-setTimeout(post,_5minutes);
+setTimeout(post,_3minutes);
 setInterval(post, _30minutes)
