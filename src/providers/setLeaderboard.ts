@@ -24,14 +24,15 @@ export const clean = async () => {
 export const post = async () => {
   try {
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
-    const {data} = await API.post<{ok: boolean}>("/private/guilds", queue)    
+
+    const {data} = await API.post("/private/guilds", queue)    
     if (data.ok === true) { clean() }
   } 
   catch (err) { 
     console.log(`Failed to push bots to leaderboard`)
     console.log({
       message: err?.message.substr(0,150),
-      err: JSON.stringify(err || []).substr(0, 200)
+      err: JSON.stringify(err || [], null, 2).substr(0, 500)
     })
   } 
 }
