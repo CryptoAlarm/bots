@@ -20,6 +20,7 @@ function BotsMapCallback(instanceReference: Partial<BotsModel>) {
 }
 
 async function BotsBuildObjectAndCheckForChanges () {
+  
   const botsModel = await getBotsList();
 
   const BotsList = botsModel.map(BotsMapCallback)
@@ -33,14 +34,32 @@ async function BotsBuildObjectAndCheckForChanges () {
 
   for (const bot of BotsList) {
     try {      
-      instance.unshift(new Bots(bot));
+      const thisBot = new Bots(bot)      
 
-      await instance[0].Login();
-
-      bot.client.once("ready", instance[0].setIntervals);
-      bot.client.on("messageCreate", instance[0].onMessage);            
+      thisBot.Login()
+        .then(response => {
+          bot.client.once("ready", thisBot.setIntervals);
+          bot.client.on("messageCreate", thisBot.onMessage);
+       
+          instance.unshift(thisBot);   
+        })
+        .catch(error => {
+     
+          console.log(`Failed to login bot ${thisBot.instanceReference.name}`)
+          console.log({
+            message: error?.message?.substr(0, 100),
+            err: JSON.stringify(error || []),
+            instance: {
+              ...thisBot.instanceReference,
+              client: null,
+              discordApiKey: null
+            }
+          })
+        })
+        
           
-    } catch (error) {
+    } 
+    catch (error) {
       console.log("Failed to authenticate " + bot.name)
     }
   }

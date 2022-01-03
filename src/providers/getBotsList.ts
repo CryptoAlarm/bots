@@ -15,6 +15,12 @@ export const getBotsList = async () => {
     return  data
 
   } catch (error) { 
+
+    console.log(`Failed to fetch prices. getBotsList`)
+    console.log({
+      message: error?.message.substr(0,150),
+      err: JSON.stringify(error || []).substr(0, 200)
+    })
     return [] 
   }   
 }

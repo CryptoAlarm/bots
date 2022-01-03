@@ -18,7 +18,13 @@ export const getPricesListHistory = (ref: string): {tokenPriceHistory: TokenData
       const {data: response} = await API.get<TokenData>("/mergePrices") 
       data = response
     } 
-    catch (error) {} 
+    catch (error) {
+      console.log(`Failed to fetch prices. getPricesListHistory`)
+      console.log({
+        message: error?.message.substr(0,150),
+        err: JSON.stringify(error || []).substr(0, 200)
+      })
+    } 
   }
 
   factory()  

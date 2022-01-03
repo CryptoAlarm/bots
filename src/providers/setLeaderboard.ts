@@ -27,7 +27,13 @@ export const post = async () => {
     const {data} = await API.post<{ok: boolean}>("/private/guilds", queue)    
     if (data.ok === true) { clean() }
   } 
-  catch (err) { } 
+  catch (err) { 
+    console.log(`Failed to push bots to leaderboard`)
+    console.log({
+      message: err?.message.substr(0,150),
+      err: JSON.stringify(err || []).substr(0, 200)
+    })
+  } 
 }
 
 export const push = (guilds: Leaderboard[]) => {

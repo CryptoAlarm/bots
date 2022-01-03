@@ -39,6 +39,7 @@ const execute = (
 				${embedMessageLeft}\n` : ""}  
 			
 			${! embedMessageLeft?.length ? "**Try:**\n!" + name.toLowerCase() + " 25" : ""}
+   
     `,
   });
 };

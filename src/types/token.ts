@@ -54,7 +54,7 @@ export const currenciesMap = [
   },
   {
     currency: "eur",
-    emoji: "💶",
+    emoji: ":flag_eu:",
     prefix: "€"
   },
   {
@@ -65,6 +65,6 @@ export const currenciesMap = [
   {
     currency: "thb",
     emoji: ":flag_th:",
-    prefix: "T"
+    prefix: "฿"
   }
 ]

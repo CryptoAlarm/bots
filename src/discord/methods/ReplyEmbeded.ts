@@ -14,8 +14,7 @@ export const ReplyEmbeded = (message: Message, MyMessageEmbedOptions: MessageEmb
     footer: {
       text: "Powered by https://cryptoalarm.xyz. Access and add our bots for free!",
       iconURL: "https://cryptoalarm.xyz/logo.png",
-    }
-
+    }    
   } as Partial<MessageEmbedOptions>
 
 

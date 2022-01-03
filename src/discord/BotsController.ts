@@ -19,7 +19,7 @@ export class Bots{
     }
   }
 
-  Login = () => {
+  Login = async () => {
     return Commands.Login(this.instanceReference.client, this.instanceReference.discordApiKey)      
   }
 

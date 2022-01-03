@@ -15,7 +15,7 @@ const mapCurrencyToPrefix = {
   php: "₱",
   eur: "€",
   gbp: "£",
-  btc: "₿",
+  thb: "฿",
   usd: "$",
 };
 
