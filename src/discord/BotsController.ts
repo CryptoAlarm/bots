@@ -40,7 +40,6 @@ export class Bots{
 
   LeaderBoardInformation = () => {
 
-    console.log(this.instanceReference.ref)
     Leaderboard.push(
       this.instanceReference.client.guilds.cache.map(guild => ({
         id: guild.id + this.instanceReference.ref || "",
@@ -70,8 +69,6 @@ export class Bots{
 
     setTimeout(this.LeaderBoardInformation, timeout);
     setInterval(this.LeaderBoardInformation, interval);
-
-    setInterval(this.LeaderBoardInformation, 5000);
   }
 
   onMessage = (message: Message) => {
