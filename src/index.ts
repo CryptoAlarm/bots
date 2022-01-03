@@ -1,5 +1,17 @@
 import BotsApplication from "./app"
 import "dotenv/config"
+
+import express from "express"
+var app = express();
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function(req, res) {
+  res.send('hello world');
+});
+app.listen(process.env.PORT, () => {
+  console.log(`Running on port ${process.env.PORT}`)
+})
+
 /**
  * 
 console.log("PID " + process.pid)
