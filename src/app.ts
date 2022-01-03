@@ -51,23 +51,15 @@ async function BotsBuildObjectAndCheckForChanges () {
         .then(response => {
           bot.client.once("ready", thisBot.setIntervals);
           bot.client.on("messageCreate", thisBot.onMessage);
-       
+    
+          
           instance.unshift(thisBot);   
         })
         .catch(error => {
      
           instanceFailedToLogin.push(thisBot.instanceReference.discordId)
           
-          console.log(`Failed to login bot ${thisBot.instanceReference.name}`)
-          console.log({
-            message: error?.message?.substr(0, 100),
-            err: JSON.stringify(error || []),
-            instance: {
-              ...thisBot.instanceReference,
-              client: null,
-              discordApiKey: null
-            }
-          })
+          Log(error, thisBot)
         })
         
           
@@ -86,4 +78,18 @@ export default async () => {
     setTimeout(BotsBuildObjectAndCheckForChanges, 0);
     setInterval(BotsBuildObjectAndCheckForChanges, 1000 * 60)
   } catch (error) {}
+}
+
+
+const Log = (error: any, bot: Bots) => {
+  console.log(`Failed to login bot ${bot.instanceReference.name}`)
+  console.log({
+    message: error?.message?.substr(0, 100),
+    err: JSON.stringify(error || []),
+    instance: {
+      ...bot.instanceReference,
+      client: null,
+      discordApiKey: null
+    }
+  })
 }

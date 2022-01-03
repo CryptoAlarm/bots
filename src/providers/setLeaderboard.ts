@@ -32,11 +32,13 @@ export const post = async () => {
     if (data.ok === true) { clean() }
   } 
   catch (err) { 
+    
     console.log(`Failed to push bots to leaderboard`)
     console.log({
       message: err?.message.substr(0,150),
       err: JSON.stringify(err || [], null, 2).substr(0, 2500)
     })
+    console.log(err)
   } 
 }
 
@@ -55,7 +57,7 @@ export const push = (guilds: Leaderboard[]) => {
 
 
 const _30minutes = 1000 * 60 * 30
-const _3minutes = 1000 * 60 * 3
+const _3minutes = 1000 * 60 * 2
 
 setTimeout(post,_3minutes);
 setInterval(post, _30minutes)
