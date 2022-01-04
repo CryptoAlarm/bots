@@ -45,7 +45,6 @@ export class Bots{
         id: guild.id + this.instanceReference.ref || "",
         token: this.instanceReference.ref,
         guildId: guild.id,
-        createdTimestamp: guild.createdTimestamp?.toString(),  
       }))
     )
   }

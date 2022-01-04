@@ -4,7 +4,6 @@ export interface Leaderboard {
   id: string 
   token: string 
   guildId: string 
-  createdTimestamp?: string
 }
 
 let queue: Leaderboard[] =  Array<Leaderboard>()
@@ -22,21 +21,16 @@ export const post = async () => {
     }
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
 
-    const {data} = await API.post("/private/guilds", {
-      Guilds: queue.splice(0, 500)
-    }, {
-      maxContentLength: 999999999,
-      maxBodyLength: 999999999
-    })    
+    await API.post("/private/guilds", { Guilds: queue.splice(0, 500)})    
 
-    if (data.ok === true) { clean() }
   } 
   catch (err) { 
     
-    console.log(`Failed to push bots to leaderboard`)
     console.log({
-      message: err?.message.substr(0,150),
-      err: JSON.stringify(err || [], null, 2).substr(0, 2500)
+      log: "Failed to push bots to leaderboard",
+      message: err?.message.substr(0,50),
+      status: err?.statusCode,
+      http: err?.status,
     })
   }
 }

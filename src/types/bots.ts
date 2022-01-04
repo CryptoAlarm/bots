@@ -37,3 +37,9 @@ export interface IMethods {
   getPricesHistoryList: (ref: string) => TokenDataUnique
   setActivity: (client: Client, name: string) => Promise<void>
 }
+
+export interface Leaderboard {
+  id: string 
+  token: string 
+  guildId: string 
+}
