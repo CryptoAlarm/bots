@@ -71,6 +71,6 @@ export const currenciesMap = [
   {
     currency: "mad",
     emoji: ":flag_ma:",
-    prefix: "م.د"
+    prefix: "D"
   },
 ]
