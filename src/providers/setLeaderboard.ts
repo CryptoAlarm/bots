@@ -1,10 +1,5 @@
+import { Leaderboard } from "../types/bots"
 import API from "./api"
-
-export interface Leaderboard {
-  id: string 
-  token: string 
-  guildId: string 
-}
 
 let queue: Leaderboard[] =  Array<Leaderboard>()
 let queueHistory: Leaderboard[] =  Array<Leaderboard>()

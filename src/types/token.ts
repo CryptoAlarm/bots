@@ -5,7 +5,8 @@ export const ListCurrencies = {
   php: 0,
   eur: 0,
   gbp: 0,
-  thb: 0
+  thb: 0,
+  mad: 0
 }
 
 export type Currencies = keyof typeof ListCurrencies
@@ -66,5 +67,10 @@ export const currenciesMap = [
     currency: "thb",
     emoji: ":flag_th:",
     prefix: "฿"
-  }
+  },
+  {
+    currency: "mad",
+    emoji: ":flag_ma:",
+    prefix: "م.د"
+  },
 ]
