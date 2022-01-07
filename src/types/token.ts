@@ -6,6 +6,7 @@ export const ListCurrencies = {
   eur: 0,
   gbp: 0,
   thb: 0,
+  idr: 0,
   mad: 0
 }
 
@@ -72,5 +73,10 @@ export const currenciesMap = [
     currency: "mad",
     emoji: ":flag_ma:",
     prefix: "D"
+  },
+  {
+    currency: "idr",
+    emoji: ":flag_id:",
+    prefix: "R"
   },
 ]
