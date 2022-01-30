@@ -19,6 +19,7 @@ import {
   Rarity,
 } from "../../types/wanaka";
 import { getWanakaLands } from "../../providers/getWanakaLands";
+
 import axios from "axios";
 
 const buildParams = (params: string[]) => {
@@ -426,19 +427,26 @@ export const filter = async (message: Message) => {
     inline: false
   })
   Fields.push({
-    name: "https://wanakafarmtools.com",
-    value: "Access the best wanaka farm tools!",
+    name: ".",
+    value: ".",
+    inline: false
+  })
+  Fields.push({
+    name: ".",
+    value: ".",
+    inline: false
+  })
+  Fields.push({
+    name: "Help us to keep servers alive. BSC Wallet",
+    value: "0x442421C5778e48A57744eEf48C7BCF86FD97a585",
     inline: false
   })
 
   return ReplyEmbeded(message, {
-    description: `
-      https://wanakafarmtools.com
-      Access the best tools for Wanaka
-    `,
+    description: ` Access the best tools for Wanaka  `,
     author: {
-      name: "Click here to access wanakafarm tools",
-      url: "https://wanakafarmtools.com",
+      name: "Click here to access cryptoalarm tools",
+      url: "https://cryptoalarm.xyz",
       icon_url: "https://cryptoalarm.xyz/logo.png"
     },
     fields: Fields
