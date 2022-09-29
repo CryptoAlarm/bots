@@ -333,7 +333,7 @@ export const byLand = async (message: Message) => {
     author: {
       name: "Click here to access wanakafarm tools",
       url: "https://wanakafarmtools.com",
-      icon_url: "https://cryptoalarm.xyz/logo.png"
+      icon_url: "https://codehall.cryptoalarm.com.br/logo.png"
     },
     title: `${Land.name} ${stars}`,
     fields: Fields,
@@ -446,8 +446,8 @@ export const filter = async (message: Message) => {
     description: ` Access the best tools for Wanaka  `,
     author: {
       name: "Click here to access cryptoalarm tools",
-      url: "https://cryptoalarm.xyz",
-      icon_url: "https://cryptoalarm.xyz/logo.png"
+      url: "https://codehall.cryptoalarm.com.br",
+      icon_url: "https://codehall.cryptoalarm.com.br"
     },
     fields: Fields
   })  

@@ -6,14 +6,14 @@ export const ReplyEmbeded = (message: Message, MyMessageEmbedOptions: MessageEmb
   let DefaultEmbedOptions = {
     author: {
       name: "Click here to add our bots to your server",
-      iconURL: "https://cryptoalarm.xyz/logo.png",
-      url: "https://cryptoalarm.xyz"
+      iconURL: "https://codehall.cryptoalarm.com.br/logo.png",
+      url: "https://codehall.cryptoalarm.com.br"
     },
     timestamp: new Date(),
     color: "#00ff00",
     footer: {
-      text: "Powered by https://cryptoalarm.xyz. Access and add our bots for free!",
-      iconURL: "https://cryptoalarm.xyz/logo.png",
+      text: "Powered by https://codehall.cryptoalarm.com.br. Access and add our bots for free!",
+      iconURL: "https://codehall.cryptoalarm.com.br/logo.png",
     }    
   } as Partial<MessageEmbedOptions>
 
