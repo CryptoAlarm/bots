@@ -16,7 +16,9 @@ export const post = async () => {
     }
     console.log(`trying to push ${queue?.length} bots to leaderboard.`)
 
-    await API.post("/private/guilds", { Guilds: queue.splice(0, 500)})    
+    queue = []
+    return 
+     await API.post("/private/guilds", { Guilds: queue.splice(0, 500)})    
 
   } 
   catch (err) { 
